@@ -9,6 +9,7 @@ team dashboard for posting roles and managing applicants.
 - `/dashboard` — candidate's own applications and status
 - `/admin` — team-only dashboard: post/close jobs, review applicants, download resumes, update status
 - `/admin/team` — invite new team member logins
+- **Automatic email when an applicant's status changes** (Applied → Reviewing → Shortlisted → Interview → Selected/Rejected), sent via Resend
 
 ---
 
@@ -38,15 +39,25 @@ auto-creates a profile on signup, and all the Row Level Security policies.
 2. Fill in the three Supabase values from step 1
 3. Add your Web3Forms access key (same one from the previous version of the site — see `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`)
 4. Set `NEXT_PUBLIC_SITE_URL` to your real domain (`https://jobhuntconsultancy.in`) — this is used in team-invite emails to build the correct link
+5. Get a free Resend API key (see step 5 below) and add it as `RESEND_API_KEY`
 
-## 5. Install and run locally
+## 5. Set up Resend (for status-change emails)
+1. Go to **https://resend.com** and sign up (free)
+2. In the dashboard, go to **API Keys → Create API Key**, copy it
+3. Paste it into `.env.local` as `RESEND_API_KEY`
+4. To start, leave `RESEND_FROM_EMAIL` blank — Resend's shared test address (`onboarding@resend.dev`) works out of the box and can send to any recipient
+5. **Later, for a more professional look**: go to **Domains** in Resend, add `jobhuntconsultancy.in`, and add the DNS records they give you (similar to the Vercel domain setup — same registrar dashboard). Once verified, set `RESEND_FROM_EMAIL` to something like `Job Hunt Consultancy <notifications@jobhuntconsultancy.in>`.
+
+Note: this only handles **email**. Automated WhatsApp messages require Meta's WhatsApp Business API, which needs business verification and has per-message costs — not something we've wired up yet. Worth revisiting once/if it's worth the setup.
+
+## 6. Install and run locally
 ```
 npm install
 npm run dev
 ```
 Visit http://localhost:3000
 
-## 6. Create your own account and make yourself a team member
+## 7. Create your own account and make yourself a team member
 Since there's no public "become a team member" page (on purpose — see below),
 you bootstrap your own admin account once, manually:
 
@@ -58,7 +69,7 @@ you bootstrap your own admin account once, manually:
 
 From this point on, you can invite every other teammate directly from `/admin/team` — no more manual database edits needed for future team members.
 
-## 7. Deploy to Vercel
+## 8. Deploy to Vercel
 1. Push this project to a GitHub repo
 2. In Vercel: **Add New → Project → Import Git Repository**
 3. Framework preset: Vercel will detect **Next.js** automatically

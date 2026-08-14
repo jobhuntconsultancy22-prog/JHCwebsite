@@ -23,7 +23,7 @@ export default function ServicesPage() {
       <section>
         <div className="wrap">
           <div className="grid grid-2" style={{ marginBottom: 28 }}>
-            <div className="card">
+            <div className="card reveal reveal-1">
               <span className="num">01</span>
               <h3>Recruitment & Staffing</h3>
               <p>Full-cycle hiring support for permanent, contract and bulk/volume roles.</p>
@@ -35,7 +35,7 @@ export default function ServicesPage() {
                 <li>Bulk hiring for seasonal or high-volume needs</li>
               </ul>
             </div>
-            <div className="card">
+            <div className="card reveal reveal-2">
               <span className="num">02</span>
               <h3>GST & ITR Filing</h3>
               <p>Compliance support that keeps your filings accurate and on time.</p>
@@ -48,7 +48,7 @@ export default function ServicesPage() {
             </div>
           </div>
           <div className="grid grid-2">
-            <div className="card">
+            <div className="card reveal reveal-3">
               <span className="num">03</span>
               <h3>Business Consultancy</h3>
               <p>Practical guidance for setting up and running a business well.</p>
@@ -59,7 +59,7 @@ export default function ServicesPage() {
                 <li>General advisory for small and growing businesses</li>
               </ul>
             </div>
-            <div className="card">
+            <div className="card reveal reveal-4">
               <span className="num">04</span>
               <h3>Web & Software Services</h3>
               <p>Digital tools built around how your business actually runs.</p>

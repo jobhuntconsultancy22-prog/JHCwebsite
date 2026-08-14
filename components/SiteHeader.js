@@ -2,12 +2,14 @@ import Link from "next/link";
 import { getUserAndProfile } from "@/lib/supabase/server";
 import NavToggle from "./NavToggle";
 import SignOutButton from "./SignOutButton";
+import HeaderScrollFX from "./HeaderScrollFX";
 
 export default async function SiteHeader({ active }) {
   const { user, profile } = await getUserAndProfile();
 
   return (
     <header className="site">
+      <HeaderScrollFX />
       <div className="bar">
         <Link href="/" className="brand">
           <img src="/assets/logo-icon.png" alt="Job Hunt Consultancy logo" />
@@ -36,7 +38,7 @@ export default async function SiteHeader({ active }) {
               <SignOutButton />
             </>
           ) : (
-            <Link href="/login" className="btn btn-gold">Login</Link>
+            <Link href="/login" className="btn btn-gold btn-lg">Login</Link>
           )}
         </nav>
 

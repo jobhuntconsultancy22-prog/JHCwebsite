@@ -34,8 +34,8 @@ export default async function JobsPage() {
       <section>
         <div className="wrap">
           {jobs && jobs.length > 0 ? (
-            jobs.map((job) => (
-              <Link key={job.id} href={`/jobs/${job.id}`} className="job-card">
+            jobs.map((job, i) => (
+              <Link key={job.id} href={`/jobs/${job.id}`} className={`job-card reveal reveal-${(i % 6) + 1}`}>
                 <div>
                   <h3>{job.title}</h3>
                   <div className="meta">

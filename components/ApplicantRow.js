@@ -2,26 +2,37 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
 
 const STATUSES = ["Applied", "Reviewing", "Shortlisted", "Interview", "Selected", "Rejected"];
 
 export default function ApplicantRow({ application }) {
   const [status, setStatus] = useState(application.status);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   async function handleChange(e) {
     const newStatus = e.target.value;
-    setStatus(newStatus);
+    const previousStatus = status;
+    setStatus(newStatus); // optimistic update
     setSaving(true);
-    const supabase = createClient();
-    await supabase
-      .from("applications")
-      .update({ status: newStatus, updated_at: new Date().toISOString() })
-      .eq("id", application.id);
-    setSaving(false);
-    router.refresh();
+    setError(null);
+
+    try {
+      const res = await fetch("/api/admin/update-application-status", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ applicationId: application.id, newStatus })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Update failed");
+      router.refresh();
+    } catch (err) {
+      setStatus(previousStatus); // roll back on failure
+      setError(err.message);
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -42,6 +53,7 @@ export default function ApplicantRow({ application }) {
             <option key={s} value={s}>{s}</option>
           ))}
         </select>
+        {error && <div style={{ color: "#b3261e", fontSize: "0.78rem", marginTop: 4 }}>{error}</div>}
       </td>
     </tr>
   );

@@ -50,28 +50,28 @@ export default function HomePage() {
 
       <section>
         <div className="wrap">
-          <div className="section-head">
+          <div className="section-head reveal">
             <p className="eyebrow">What we do</p>
             <h2>One consultancy, four ways we help you grow</h2>
             <p>We started in recruitment and staffing — and built out the services that businesses actually need alongside it.</p>
           </div>
           <div className="grid grid-4">
-            <div className="card">
+            <div className="card reveal reveal-1">
               <span className="num">01</span>
               <h3>Recruitment & Staffing</h3>
               <p>End-to-end hiring for permanent, contract and bulk roles — sourcing, screening and onboarding handled for you.</p>
             </div>
-            <div className="card">
+            <div className="card reveal reveal-2">
               <span className="num">02</span>
               <h3>GST & ITR Filing</h3>
               <p>Registration, returns and compliance support for businesses and individuals, kept simple and on time.</p>
             </div>
-            <div className="card">
+            <div className="card reveal reveal-3">
               <span className="num">03</span>
               <h3>Business Consultancy</h3>
               <p>Practical guidance on setting up, structuring and running a small or growing business.</p>
             </div>
-            <div className="card">
+            <div className="card reveal reveal-4">
               <span className="num">04</span>
               <h3>Web & Software Services</h3>
               <p>Websites, apps and business tools built for the way you actually work.</p>
@@ -82,27 +82,27 @@ export default function HomePage() {
 
       <section className="bg-paper">
         <div className="wrap">
-          <div className="section-head">
+          <div className="section-head reveal">
             <p className="eyebrow">How hiring works with us</p>
             <h2>Four steps from opening to offer</h2>
           </div>
           <div className="process">
-            <div className="step">
+            <div className="step reveal reveal-1">
               <span className="step-num">01</span>
               <h3>Understand</h3>
               <p>We learn the role, the team and what "right fit" actually means for you.</p>
             </div>
-            <div className="step">
+            <div className="step reveal reveal-2">
               <span className="step-num">02</span>
               <h3>Source</h3>
               <p>We tap our network and active search to build a shortlist worth your time.</p>
             </div>
-            <div className="step">
+            <div className="step reveal reveal-3">
               <span className="step-num">03</span>
               <h3>Screen</h3>
               <p>Every candidate is vetted for skills, intent and fit before you meet them.</p>
             </div>
-            <div className="step">
+            <div className="step reveal reveal-4">
               <span className="step-num">04</span>
               <h3>Place</h3>
               <p>We manage offers, paperwork and onboarding so the hire lands cleanly.</p>
@@ -114,7 +114,7 @@ export default function HomePage() {
       <section>
         <div className="wrap">
           <div className="grid grid-2" style={{ alignItems: "center" }}>
-            <div>
+            <div className="reveal reveal-1">
               <p className="eyebrow">Why Job Hunt Consultancy</p>
               <h2>Recruitment that understands the rest of your business too</h2>
               <p>Because we also work in GST, compliance and business consultancy, we understand what a hire actually costs and what a business can support — not just how to fill a seat.</p>
@@ -125,7 +125,7 @@ export default function HomePage() {
                 <li>Support beyond hiring — compliance and consultancy under one roof</li>
               </ul>
             </div>
-            <div className="card card-dark">
+            <div className="card card-dark reveal reveal-2">
               <p className="eyebrow" style={{ color: "var(--gold-light)" }}>Looking to hire?</p>
               <h3>Tell us about the role</h3>
               <p>Share the position and team you're hiring for and we'll get back to you with next steps — usually within a business day.</p>

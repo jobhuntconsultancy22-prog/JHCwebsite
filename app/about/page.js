@@ -22,13 +22,13 @@ export default function AboutPage() {
 
       <section>
         <div className="wrap grid grid-2" style={{ alignItems: "start" }}>
-          <div>
+          <div className="reveal reveal-1">
             <p className="eyebrow">Our story</p>
             <h2>Why we started Job Hunt Consultancy</h2>
             <p>We saw the same problem from both sides of the table — businesses spending weeks sorting through candidates who weren't a fit, and good candidates never hearing back from roles they were genuinely right for. Job Hunt Consultancy exists to close that gap: proper screening, honest communication, and a process that respects everyone's time.</p>
             <p>Alongside recruitment, we work closely with small and growing businesses on GST filing, ITR compliance and general business consultancy — so we understand the operational reality behind every hiring decision, not just the job description.</p>
           </div>
-          <div>
+          <div className="reveal reveal-2">
             <p className="eyebrow">What we believe</p>
             <h2>Our approach</h2>
             <ul className="check-list">
@@ -43,20 +43,20 @@ export default function AboutPage() {
 
       <section className="bg-paper">
         <div className="wrap">
-          <div className="section-head">
+          <div className="section-head reveal">
             <p className="eyebrow">What guides our work</p>
             <h2>Our values</h2>
           </div>
           <div className="grid grid-3">
-            <div className="card">
+            <div className="card reveal reveal-1">
               <h3>Transparency</h3>
               <p>Clear timelines, honest feedback and no disappearing acts — for clients and candidates alike.</p>
             </div>
-            <div className="card">
+            <div className="card reveal reveal-2">
               <h3>Fit over speed</h3>
               <p>We'd rather take an extra day and get the right person in front of you than rush a mismatch.</p>
             </div>
-            <div className="card">
+            <div className="card reveal reveal-3">
               <h3>Full-picture support</h3>
               <p>Hiring doesn't happen in isolation — we help with the compliance and consultancy around it too.</p>
             </div>

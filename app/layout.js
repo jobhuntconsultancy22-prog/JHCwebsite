@@ -1,4 +1,6 @@
 import "./globals.css";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata = {
   title: "Job Hunt Consultancy | Right People. Right Opportunity.",
@@ -19,7 +21,11 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <ScrollProgressBar />
+        {children}
+        <ScrollReveal />
+      </body>
     </html>
   );
 }

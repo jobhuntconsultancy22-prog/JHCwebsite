@@ -2,8 +2,9 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import InviteTeamMemberForm from "@/components/InviteTeamMemberForm";
 import { getUserAndProfile } from "@/lib/supabase/server";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Manage Team | Job Hunt Consultancy" };
+export const metadata = buildMetadata({ title: "Manage Team", path: "/admin/team", noindex: true });
 export const dynamic = "force-dynamic";
 
 export default async function TeamPage() {

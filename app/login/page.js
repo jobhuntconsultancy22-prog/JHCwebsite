@@ -2,10 +2,13 @@ import { Suspense } from "react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import LoginForm from "@/components/LoginForm";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Log In | Job Hunt Consultancy"
-};
+export const metadata = buildMetadata({
+  title: "Log In",
+  path: "/login",
+  noindex: true
+});
 
 export default function LoginPage() {
   return (

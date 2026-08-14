@@ -2,8 +2,9 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { getUserAndProfile } from "@/lib/supabase/server";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = { title: "My Applications | Job Hunt Consultancy" };
+export const metadata = buildMetadata({ title: "My Applications", path: "/dashboard", noindex: true });
 export const dynamic = "force-dynamic";
 
 const STATUS_BADGE = {

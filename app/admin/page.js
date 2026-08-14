@@ -2,8 +2,9 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { getUserAndProfile } from "@/lib/supabase/server";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Team Dashboard | Job Hunt Consultancy" };
+export const metadata = buildMetadata({ title: "Team Dashboard", path: "/admin", noindex: true });
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {

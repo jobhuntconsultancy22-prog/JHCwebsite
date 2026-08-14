@@ -1,16 +1,20 @@
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Services | Job Hunt Consultancy",
-  description: "Recruitment & staffing, GST & ITR filing, business consultancy, and web & software services."
-};
+export const metadata = buildMetadata({
+  title: "Services",
+  description: "Recruitment & staffing, GST & ITR filing, business consultancy, and web & software services from Job Hunt Consultancy in Chennai.",
+  path: "/services"
+});
 
 export default function ServicesPage() {
   return (
     <>
       <SiteHeader active="services" />
+
+      <main>
 
       <section className="page-hero">
         <div className="wrap">
@@ -85,6 +89,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <SiteFooter />
     </>

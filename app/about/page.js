@@ -1,16 +1,20 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "About Us | Job Hunt Consultancy",
-  description: "Job Hunt Consultancy is a Chennai-based hiring, recruitment and business support consultancy."
-};
+export const metadata = buildMetadata({
+  title: "About Us",
+  description: "Job Hunt Consultancy is a Chennai-based hiring, recruitment and business support consultancy, working with businesses and job seekers across India.",
+  path: "/about"
+});
 
 export default function AboutPage() {
   return (
     <>
       <SiteHeader active="about" />
+
+      <main>
 
       <section className="page-hero">
         <div className="wrap">
@@ -75,6 +79,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <SiteFooter />
     </>

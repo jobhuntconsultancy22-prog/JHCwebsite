@@ -1,16 +1,20 @@
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ContactForm from "@/components/ContactForm";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Contact | Job Hunt Consultancy",
-  description: "Get in touch with Job Hunt Consultancy — call, WhatsApp, email or send us a message directly."
-};
+export const metadata = buildMetadata({
+  title: "Contact Us",
+  description: "Get in touch with Job Hunt Consultancy — call, WhatsApp, email or send us a message directly.",
+  path: "/contact"
+});
 
 export default function ContactPage() {
   return (
     <>
       <SiteHeader active="contact" />
+
+      <main>
 
       <section className="page-hero">
         <div className="wrap">
@@ -82,6 +86,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <SiteFooter />
     </>

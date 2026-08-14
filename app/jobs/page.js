@@ -3,11 +3,13 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ContactForm from "@/components/ContactForm";
 import { createClient } from "@/lib/supabase/server";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Job Search | Job Hunt Consultancy",
-  description: "Browse current openings from Job Hunt Consultancy, or post a role you're hiring for."
-};
+export const metadata = buildMetadata({
+  title: "Job Search — Current Openings",
+  description: "Browse current job openings from Job Hunt Consultancy in Chennai, or post a role you're hiring for.",
+  path: "/jobs"
+});
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +24,8 @@ export default async function JobsPage() {
   return (
     <>
       <SiteHeader active="jobs" />
+
+      <main>
 
       <section className="page-hero">
         <div className="wrap">
@@ -80,6 +84,8 @@ export default async function JobsPage() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <SiteFooter />
     </>

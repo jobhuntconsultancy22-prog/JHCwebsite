@@ -10,6 +10,8 @@ team dashboard for posting roles and managing applicants.
 - `/admin` — team-only dashboard: post/close jobs, review applicants, download resumes, update status
 - `/admin/team` — invite new team member logins
 - **Automatic email when an applicant's status changes** (Applied → Reviewing → Shortlisted → Interview → Selected/Rejected), sent via Resend
+- **SEO**: per-page titles/descriptions, Open Graph + Twitter share cards, auto-generated `sitemap.xml` and `robots.txt`, and structured data (JSON-LD) — including `JobPosting` schema on every role, which is what lets individual openings appear in Google's dedicated Jobs search results, not just regular web results
+- **Responsive**: nav switches to the mobile menu earlier (at tablet width, not just phone width) so it never overflows on iPad-sized screens; grids ease down gradually across breakpoints instead of jumping straight from 4 columns to 1; touch targets sized to accessibility guidelines (44px minimum) on mobile
 
 ---
 
@@ -90,3 +92,15 @@ Your domain (`jobhuntconsultancy.in`) connects the same way as before — **Sett
 - **Email confirmation**: Supabase requires confirming your email by default before you can log in. If you'd rather skip that step for a smoother signup, go to **Authentication → Providers → Email** in the Supabase dashboard and turn off "Confirm email" — just know this makes signup instant but slightly less spam-resistant.
 - **Job posting fields**: `salary_range`, `department`, etc. are free-text right now — fine to start, but let me know if you want dropdowns or structured fields later.
 - **Emails for status changes**: right now, updating an applicant's status in `/admin` does not email the candidate automatically. If you want candidates notified when their status changes, that's a small addition (a Supabase Edge Function or a simple email API call) — just ask.
+
+## SEO — what's set up and what to do after deploying
+- Every public page has a unique title, description, and social share card (Open Graph/Twitter) — visible when the link is shared on WhatsApp, LinkedIn, etc.
+- `/admin`, `/dashboard`, `/login`, `/signup` are marked `noindex` — they won't show up in search results, which is what you want for private pages.
+- `sitemap.xml` and `robots.txt` are generated automatically and update themselves — every open job posting is added to the sitemap the moment you post it, no manual step needed.
+- Every job posting page carries `JobPosting` structured data, which is what makes a role eligible to appear in Google's "Jobs" search feature (the card-based job results with a company logo and "Apply" button) — this is the single highest-impact SEO feature for a recruitment site, and it updates automatically as you post/close roles.
+
+**After you deploy**, two manual one-time steps to get search engines to actually notice the site:
+1. Go to **Google Search Console** (search.google.com/search-console), add `jobhuntconsultancy.in` as a property, verify ownership (Google gives you a DNS record or HTML file to add — similar process to the Vercel domain setup)
+2. Once verified, submit your sitemap: `https://jobhuntconsultancy.in/sitemap.xml`
+
+After that, Google will crawl and index the site on its own schedule (typically days to a couple of weeks for a new site) — nothing further needed on your end unless you want to track how it's performing (Search Console also shows you what people search to find the site, and any indexing errors).

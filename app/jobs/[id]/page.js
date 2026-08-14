@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ApplyForm from "@/components/ApplyForm";
+import JsonLd from "@/components/JsonLd";
 import { getUserAndProfile } from "@/lib/supabase/server";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +17,27 @@ const STATUS_BADGE = {
   Selected: "badge-selected",
   Rejected: "badge-rejected"
 };
+
+// Dynamic per-job title/description/OG tags — this is what makes each role
+// shareable and indexable as its own page, not just a generic "jobs" listing.
+export async function generateMetadata({ params }) {
+  const { supabase } = await getUserAndProfile();
+  const { data: job } = await supabase.from("jobs").select("title, department, location, description").eq("id", params.id).single();
+
+  if (!job) {
+    return buildMetadata({ title: "Role not found", path: `/jobs/${params.id}`, noindex: true });
+  }
+
+  const description = job.description
+    ? job.description.slice(0, 155).trim() + (job.description.length > 155 ? "…" : "")
+    : `${job.title} — ${job.department || "open role"} at Job Hunt Consultancy${job.location ? `, ${job.location}` : ""}.`;
+
+  return buildMetadata({
+    title: job.title,
+    description,
+    path: `/jobs/${params.id}`
+  });
+}
 
 export default async function JobDetailPage({ params }) {
   const { id } = params;
@@ -34,9 +57,48 @@ export default async function JobDetailPage({ params }) {
     existingApplication = data;
   }
 
+  // JobPosting structured data — this is what lets a role show up in
+  // Google's dedicated "Jobs" search results, not just regular web results.
+  const jobPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.description || job.title,
+    datePosted: job.created_at,
+    employmentType: (job.job_type || "FULL_TIME").toUpperCase().replace(/[\s-]/g, "_"),
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "Job Hunt Consultancy",
+      sameAs: SITE_URL,
+      logo: `${SITE_URL}/assets/logo-icon.png`
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: job.location || "Chennai",
+        addressRegion: "Tamil Nadu",
+        addressCountry: "IN"
+      }
+    },
+    directApply: true,
+    ...(job.salary_range
+      ? {
+          baseSalary: {
+            "@type": "MonetaryAmount",
+            currency: "INR",
+            value: { "@type": "QuantitativeValue", value: job.salary_range, unitText: "YEAR" }
+          }
+        }
+      : {})
+  };
+
   return (
     <>
+      <JsonLd data={jobPostingSchema} />
       <SiteHeader active="jobs" />
+
+      <main>
 
       <section className="page-hero">
         <div className="wrap">
@@ -107,6 +169,8 @@ export default async function JobDetailPage({ params }) {
           </div>
         </div>
       </section>
+
+      </main>
 
       <SiteFooter />
     </>

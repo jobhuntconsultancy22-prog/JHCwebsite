@@ -7,6 +7,8 @@ export default function HomePage() {
     <>
       <SiteHeader active="home" />
 
+      <main>
+
       <section className="hero">
         <div className="constellation" aria-hidden="true">
           <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
@@ -170,6 +172,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <SiteFooter />
     </>

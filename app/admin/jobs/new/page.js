@@ -1,8 +1,9 @@
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import NewJobForm from "@/components/NewJobForm";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = { title: "Post a Role | Job Hunt Consultancy" };
+export const metadata = buildMetadata({ title: "Post a Role", path: "/admin/jobs/new", noindex: true });
 
 export default function NewJobPage() {
   return (

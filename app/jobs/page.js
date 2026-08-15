@@ -2,6 +2,7 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ContactForm from "@/components/ContactForm";
+import EmptyState from "@/components/EmptyState";
 import { createClient } from "@/lib/supabase/server";
 import { buildMetadata } from "@/lib/seo";
 
@@ -52,10 +53,11 @@ export default async function JobsPage() {
               </Link>
             ))
           ) : (
-            <div className="empty-state">
-              <h3>No open roles right now</h3>
-              <p>Check back soon, or send us your details below and we'll reach out when something fits.</p>
-            </div>
+            <EmptyState
+              icon="briefcase"
+              title="No open roles right now"
+              message="Check back soon, or send us your details below and we'll reach out when something fits."
+            />
           )}
         </div>
       </section>
@@ -75,7 +77,7 @@ export default async function JobsPage() {
 
       <section className="bg-forest">
         <div className="wrap">
-          <div className="cta-banner" style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.2)" }}>
+          <div className="cta-banner glass">
             <div>
               <h2 style={{ color: "var(--white)" }}>Prefer to talk it through?</h2>
               <p style={{ color: "rgba(255,255,255,0.75)" }}>Message us directly on WhatsApp — quickest way to reach us.</p>

@@ -2,6 +2,7 @@ import "./globals.css";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ScrollReveal from "@/components/ScrollReveal";
 import JsonLd from "@/components/JsonLd";
+import { ToastProvider } from "@/components/ToastProvider";
 import { buildMetadata, SITE_URL, SITE_NAME } from "@/lib/seo";
 
 export const metadata = {
@@ -50,9 +51,11 @@ export default function RootLayout({ children }) {
         <JsonLd data={organizationSchema} />
       </head>
       <body>
-        <ScrollProgressBar />
-        {children}
-        <ScrollReveal />
+        <ToastProvider>
+          <ScrollProgressBar />
+          {children}
+          <ScrollReveal />
+        </ToastProvider>
       </body>
     </html>
   );

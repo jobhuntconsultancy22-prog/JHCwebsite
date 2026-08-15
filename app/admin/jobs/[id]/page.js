@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import JobStatusToggle from "@/components/JobStatusToggle";
-import ApplicantRow from "@/components/ApplicantRow";
+import ApplicantsTable from "@/components/ApplicantsTable";
 import { getUserAndProfile } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -48,31 +48,7 @@ export default async function ManageJobPage({ params }) {
             <JobStatusToggle jobId={job.id} initialStatus={job.status} />
           </div>
 
-          {applicationsWithUrls.length > 0 ? (
-            <div className="table-wrap">
-              <table className="data-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Applied on</th>
-                    <th>Resume</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {applicationsWithUrls.map((app) => (
-                    <ApplicantRow key={app.id} application={app} />
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div className="empty-state">
-              <h3>No applicants yet</h3>
-              <p>Applications will show up here as candidates apply.</p>
-            </div>
-          )}
+          <ApplicantsTable applications={applicationsWithUrls} />
         </div>
       </section>
 

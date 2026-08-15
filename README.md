@@ -6,12 +6,21 @@ team dashboard for posting roles and managing applicants.
 ## What's in this project
 - Public pages: Home, About, Services, Job Search, Contact (same design as before)
 - `/signup`, `/login` — candidate accounts (email + password)
-- `/dashboard` — candidate's own applications and status
-- `/admin` — team-only dashboard: post/close jobs, review applicants, download resumes, update status
+- `/dashboard` — candidate's own applications, now shown as cards with a visual status stepper (Applied → Reviewing → Shortlisted → Interview → Selected/Rejected)
+- `/admin` — team-only dashboard: post/close jobs, review applicants (with search/filter by name, phone, or status), download resumes, update status
 - `/admin/team` — invite new team member logins
-- **Automatic email when an applicant's status changes** (Applied → Reviewing → Shortlisted → Interview → Selected/Rejected), sent via Resend
-- **SEO**: per-page titles/descriptions, Open Graph + Twitter share cards, auto-generated `sitemap.xml` and `robots.txt`, and structured data (JSON-LD) — including `JobPosting` schema on every role, which is what lets individual openings appear in Google's dedicated Jobs search results, not just regular web results
-- **Responsive**: nav switches to the mobile menu earlier (at tablet width, not just phone width) so it never overflows on iPad-sized screens; grids ease down gradually across breakpoints instead of jumping straight from 4 columns to 1; touch targets sized to accessibility guidelines (44px minimum) on mobile
+- **Automatic email when an applicant's status changes**, sent via Resend
+- **Toast notifications** for admin actions (job posted, status changed, invite sent) and candidate application submission
+- **Skeleton loading states** on every data-driven page — no blank flash while content loads
+- **Share buttons** (WhatsApp/LinkedIn) on every job posting
+- **SEO**: per-page metadata, Open Graph share cards, sitemap.xml, robots.txt, and `JobPosting` structured data for Google Jobs
+- **Responsive**: tablet-safe nav, gradual grid collapse, accessible touch targets
+- **Modern motion/depth design**: an animated aurora gradient glow behind the homepage hero, a cursor-following spotlight, glassmorphic (frosted-glass) panels, a bento-grid services layout, and subtle 3D tilt-on-hover for cards — all in your brand colors rather than a generic template look
+
+## ⚠️ Before going live: replace the placeholder testimonials
+`components/Testimonials.js` (shown on the homepage) ships with clearly-marked placeholder quotes like `"[Add a real quote here]"` — **these are not real and must not be published as-is**. Fake testimonials on a live business site are misleading to visitors. Before launch, either:
+- Replace the entries with real quotes from actual clients/candidates (ask a few you've placed for a short line you can use), or
+- Remove the section entirely by deleting the `<Testimonials />` line in `app/page.js`
 
 ---
 

@@ -4,6 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ApplyForm from "@/components/ApplyForm";
 import JsonLd from "@/components/JsonLd";
+import ShareButtons from "@/components/ShareButtons";
 import { getUserAndProfile } from "@/lib/supabase/server";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 
@@ -127,6 +128,7 @@ export default async function JobDetailPage({ params }) {
                 <p style={{ whiteSpace: "pre-line" }}>{job.requirements}</p>
               </>
             )}
+            <ShareButtons jobId={job.id} title={job.title} />
           </div>
 
           <div>

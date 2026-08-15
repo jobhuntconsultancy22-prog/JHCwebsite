@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { useToast } from "@/components/ToastProvider";
 
 export default function ApplyForm({ jobId, userId }) {
   const [coverNote, setCoverNote] = useState("");
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const [submitted, setSubmitted] = useState(false);
+  const showToast = useToast();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -50,8 +52,24 @@ export default function ApplyForm({ jobId, userId }) {
       return;
     }
 
-    router.push("/dashboard");
-    router.refresh();
+    showToast("Application submitted", "success");
+    setSubmitted(true);
+  }
+
+  if (submitted) {
+    return (
+      <div className="apply-success">
+        <div className="apply-success-check">
+          <svg viewBox="0 0 52 52" fill="none">
+            <circle className="apply-success-circle" cx="26" cy="26" r="24" stroke="currentColor" strokeWidth="2" />
+            <path className="apply-success-tick" d="M15 27l7 7 15-15" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+        <h3>Application submitted</h3>
+        <p>We've received your resume and details — you can track this application's status anytime from your dashboard.</p>
+        <Link href="/dashboard" className="btn btn-gold">View my applications</Link>
+      </div>
+    );
   }
 
   return (

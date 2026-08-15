@@ -3,11 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { useToast } from "@/components/ToastProvider";
 
 export default function JobStatusToggle({ jobId, initialStatus }) {
   const [status, setStatus] = useState(initialStatus);
   const [saving, setSaving] = useState(false);
   const router = useRouter();
+  const showToast = useToast();
 
   async function toggle() {
     setSaving(true);
@@ -20,7 +22,10 @@ export default function JobStatusToggle({ jobId, initialStatus }) {
     setSaving(false);
     if (!error) {
       setStatus(newStatus);
+      showToast(newStatus === "open" ? "Role reopened" : "Role closed", "success");
       router.refresh();
+    } else {
+      showToast("Couldn't update the role status", "error");
     }
   }
 

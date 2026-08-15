@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { useToast } from "@/components/ToastProvider";
 
 export default function NewJobForm() {
   const [form, setForm] = useState({
@@ -17,6 +18,7 @@ export default function NewJobForm() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const showToast = useToast();
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -41,8 +43,10 @@ export default function NewJobForm() {
     setLoading(false);
     if (insertError) {
       setError(insertError.message);
+      showToast("Couldn't post the role", "error");
       return;
     }
+    showToast(`"${form.title}" is now live`, "success");
     router.push("/admin");
     router.refresh();
   }

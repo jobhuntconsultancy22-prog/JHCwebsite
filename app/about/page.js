@@ -70,7 +70,7 @@ export default function AboutPage() {
 
       <section className="bg-forest">
         <div className="wrap">
-          <div className="cta-banner" style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.2)" }}>
+          <div className="cta-banner glass">
             <div>
               <h2 style={{ color: "var(--white)" }}>Want to work with us?</h2>
               <p style={{ color: "rgba(255,255,255,0.75)" }}>Whether you're hiring or job hunting, we'd like to hear from you.</p>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ToastProvider";
 
 export default function InviteTeamMemberForm() {
   const [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ export default function InviteTeamMemberForm() {
   const [status, setStatus] = useState(null); // null | "sending" | "sent" | "error"
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
+  const showToast = useToast();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -25,12 +27,14 @@ export default function InviteTeamMemberForm() {
       if (!res.ok) throw new Error(data.error || "Something went wrong");
 
       setStatus("sent");
+      showToast(`Invite sent to ${email}`, "success");
       setEmail("");
       setFullName("");
       router.refresh();
     } catch (err) {
       setStatus("error");
       setErrorMsg(err.message);
+      showToast("Couldn't send the invite", "error");
     }
   }
 

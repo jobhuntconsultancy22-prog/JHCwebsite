@@ -1,6 +1,10 @@
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import Testimonials from "@/components/Testimonials";
+import AuroraBackground from "@/components/AuroraBackground";
+import CursorSpotlight from "@/components/CursorSpotlight";
+import TiltCard from "@/components/TiltCard";
 
 export default function HomePage() {
   return (
@@ -10,6 +14,8 @@ export default function HomePage() {
       <main>
 
       <section className="hero">
+        <AuroraBackground />
+        <CursorSpotlight />
         <div className="constellation" aria-hidden="true">
           <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
             <g stroke="#C9962C" strokeWidth="1" opacity="0.35">
@@ -47,6 +53,11 @@ export default function HomePage() {
             <Link href="/contact" className="btn btn-gold">Hire talent</Link>
             <Link href="/jobs" className="btn btn-outline btn-ghost-light">Find a job</Link>
           </div>
+          <div className="hero-highlights">
+            <span className="hero-highlight-chip glass"><span className="dot" />4 services under one roof</span>
+            <span className="hero-highlight-chip glass"><span className="dot" />Chennai-based, pan-India reach</span>
+            <span className="hero-highlight-chip glass"><span className="dot" />Direct, honest communication</span>
+          </div>
         </div>
       </section>
 
@@ -57,27 +68,35 @@ export default function HomePage() {
             <h2>One consultancy, four ways we help you grow</h2>
             <p>We started in recruitment and staffing — and built out the services that businesses actually need alongside it.</p>
           </div>
-          <div className="grid grid-4">
-            <div className="card reveal reveal-1">
-              <span className="num">01</span>
-              <h3>Recruitment & Staffing</h3>
-              <p>End-to-end hiring for permanent, contract and bulk roles — sourcing, screening and onboarding handled for you.</p>
-            </div>
-            <div className="card reveal reveal-2">
-              <span className="num">02</span>
-              <h3>GST & ITR Filing</h3>
-              <p>Registration, returns and compliance support for businesses and individuals, kept simple and on time.</p>
-            </div>
-            <div className="card reveal reveal-3">
-              <span className="num">03</span>
-              <h3>Business Consultancy</h3>
-              <p>Practical guidance on setting up, structuring and running a small or growing business.</p>
-            </div>
-            <div className="card reveal reveal-4">
-              <span className="num">04</span>
-              <h3>Web & Software Services</h3>
-              <p>Websites, apps and business tools built for the way you actually work.</p>
-            </div>
+          <div className="bento-grid">
+            <TiltCard className="bento-large">
+              <div className="card reveal reveal-1">
+                <span className="num">01</span>
+                <h3>Recruitment & Staffing</h3>
+                <p>End-to-end hiring for permanent, contract and bulk roles — sourcing, screening and onboarding handled for you. Our founding service and still where we spend most of our time.</p>
+              </div>
+            </TiltCard>
+            <TiltCard className="bento-b">
+              <div className="card reveal reveal-2">
+                <span className="num">02</span>
+                <h3>GST & ITR Filing</h3>
+                <p>Registration, returns and compliance support, kept simple and on time.</p>
+              </div>
+            </TiltCard>
+            <TiltCard className="bento-c">
+              <div className="card reveal reveal-3">
+                <span className="num">03</span>
+                <h3>Business Consultancy</h3>
+                <p>Practical guidance on setting up and running a business.</p>
+              </div>
+            </TiltCard>
+            <TiltCard className="bento-d">
+              <div className="card reveal reveal-4">
+                <span className="num">04</span>
+                <h3>Web & Software Services</h3>
+                <p>Websites, apps and business tools built for the way you actually work.</p>
+              </div>
+            </TiltCard>
           </div>
         </div>
       </section>
@@ -127,15 +146,19 @@ export default function HomePage() {
                 <li>Support beyond hiring — compliance and consultancy under one roof</li>
               </ul>
             </div>
-            <div className="card card-dark reveal reveal-2">
-              <p className="eyebrow" style={{ color: "var(--gold-light)" }}>Looking to hire?</p>
-              <h3>Tell us about the role</h3>
-              <p>Share the position and team you're hiring for and we'll get back to you with next steps — usually within a business day.</p>
-              <Link href="/contact" className="btn btn-gold">Start a conversation</Link>
-            </div>
+            <TiltCard>
+              <div className="card card-dark reveal reveal-2">
+                <p className="eyebrow" style={{ color: "var(--gold-light)" }}>Looking to hire?</p>
+                <h3>Tell us about the role</h3>
+                <p>Share the position and team you're hiring for and we'll get back to you with next steps — usually within a business day.</p>
+                <Link href="/contact" className="btn btn-gold">Start a conversation</Link>
+              </div>
+            </TiltCard>
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       <section className="bg-forest">
         <div className="wrap">
